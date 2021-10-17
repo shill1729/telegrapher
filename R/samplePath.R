@@ -58,15 +58,14 @@ samplePath <- function(tt, x0, sp, n, startSign = NULL)
 #' the random sign change, and the photon itself.}
 #' @return null
 #' @export plotTelegraphSample
-plotTelegraphSample <- function(s, sp)
+plotTelegraphSample <- function(s, sp = 1)
 {
-
   n <- nrow(s)-1
   graphics::par(mfrow = c(2, 2))
-  plot(s$t, s$N, main = "N_t", type = "s")
-  plot(s$t, s$telegraph, main = "Photon", type = "l")
+  plot(s$t, s$N, xlab = "time", ylab = "# of jumps", main = "N_t", type = "s")
+  plot(s$t, s$telegraph, xlab = "time", ylab = "x-position", main = "Photon", type = "l")
   graphics::abline(h = 0, lty = "dashed")
-  plot(s$t, s$V, main = "V_t", type = "s")
+  plot(s$t, s$V, xlab = "time", ylab = "random sign", main = "V_t", type = "s")
   plot(stats::density(diff(s$telegraph)), main = "Increment density", type = "l")
   graphics::abline(v = sp*(s$t[n+1]/n), lty = "dashed")
   graphics::abline(v = -sp*(s$t[n+1]/n), lty = "dashed")
@@ -77,8 +76,8 @@ plotTelegraphSample <- function(s, sp)
 #' @param tt length of time to simulate under
 #' @param x0 the initial position of the particle
 #' @param sp the speed of light
-#' @param ntime number of time sub-intervals
 #' @param npaths number of paths to generate
+#' @param ntime number of time sub-intervals
 #' @param startSign the starting direction, use NULL for random, otherwise
 #' use \eqn{+/- 1}
 #'
@@ -87,7 +86,7 @@ plotTelegraphSample <- function(s, sp)
 #' @return matrix where the first column is the time, the rest
 #' are paths
 #' @export sampleEnsemble
-sampleEnsemble <- function(tt, x0, sp = 1, ntime, npaths, startSign = NULL)
+sampleEnsemble <- function(tt, x0 = 0, sp = 1, npaths = 100, ntime = 1000, startSign = NULL)
 {
   h <- tt/ntime
   pathMatrix <- matrix(0, nrow = ntime + 1, ncol = npaths+1)
@@ -109,7 +108,10 @@ sampleEnsemble <- function(tt, x0, sp = 1, ntime, npaths, startSign = NULL)
 plotEnsemble <- function(ensemble)
 {
   npaths <- ncol(ensemble)-1
-  plot(ensemble[, 1], ensemble[, 2], type = "l", ylim = c(min(ensemble[, -1]), max(ensemble[, -1])))
+  plot(ensemble[, 1], ensemble[, 2],
+       type = "l",
+       ylim = c(min(ensemble[, -1]), max(ensemble[, -1])),
+       xlab = "time", ylab = "position", main = "Sample ensemble")
   for(i in 3:(npaths+1))
   {
     graphics::lines(ensemble[, 1], ensemble[, i], lty = "dashed")

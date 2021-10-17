@@ -4,7 +4,7 @@
 \alias{plotTelegraphSample}
 \title{Plot wrapper for the Telegraph-process}
 \usage{
-plotTelegraphSample(s, sp)
+plotTelegraphSample(s, sp = 1)
 }
 \arguments{
 \item{s}{data.frame returned from \code{samplePath}}

@@ -4,7 +4,14 @@
 \alias{sampleEnsemble}
 \title{Simulate a sample path of the Goldstein-Kac process}
 \usage{
-sampleEnsemble(tt, x0, sp = 1, ntime, npaths, startSign = NULL)
+sampleEnsemble(
+  tt,
+  x0 = 0,
+  sp = 1,
+  npaths = 100,
+  ntime = 1000,
+  startSign = NULL
+)
 }
 \arguments{
 \item{tt}{length of time to simulate under}
@@ -13,9 +20,9 @@ sampleEnsemble(tt, x0, sp = 1, ntime, npaths, startSign = NULL)
 
 \item{sp}{the speed of light}
 
-\item{ntime}{number of time sub-intervals}
-
 \item{npaths}{number of paths to generate}
+
+\item{ntime}{number of time sub-intervals}
 
 \item{startSign}{the starting direction, use NULL for random, otherwise
 use \eqn{+/- 1}}
