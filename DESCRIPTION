@@ -1,0 +1,14 @@
+Package: telegrapher
+Type: Package
+Title: Study the telegrapher PDE and process numerically
+Version: 0.1.0
+Author: Sean Hill
+Maintainer: Sean Hill <52792611+shill1729@users.noreply.github.com>
+Description: Numerical functions for studying the telegrapher PDE and
+    the associated Goldstein-Kac process.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    pdes
+RoxygenNote: 7.1.1
